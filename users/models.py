@@ -36,18 +36,6 @@ class User(AbstractUser):
         return self.username
 
 
-class UserConfirm(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='confirmation')
-    confirmation_code = models.CharField(max_length=50)
-    confirmed = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = 'user_confirmations'
-
-    def __str__(self):
-        return f"{self.user.username}"
-
-
 class Shared(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shared_items')
     item_name = models.CharField(max_length=100)
@@ -59,3 +47,16 @@ class Shared(models.Model):
 
     def __str__(self):
         return f"{self.user} | {self.item_name}"
+
+
+class UserConfirm(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='confirmation')
+    confirmation_code = models.CharField(max_length=50)
+    confirmed = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'user_confirmations'
+
+    def __str__(self):
+        return f"{self.user.username}"
+
