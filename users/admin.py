@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import User, Shared, UserConfirm
+from .models import User, UserConfirmation
+# Register your models here.
 
 admin.site.register(User)
-admin.site.register(Shared)
-admin.site.register(UserConfirm)
+admin.site.register(UserConfirmation)
